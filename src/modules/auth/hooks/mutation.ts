@@ -79,8 +79,15 @@ interface RegisterFaceResponse {
           message: "Login xatolik yuz berdi! Qayta urinib ko‘ring.",
         });
       },
-      onSettled: () => {
-        queryClient.invalidateQueries(["teacher"]);
+      onSettled: async (_, error) => {
+        if (error) {
+          console.log(error?.message, "errorrr");
+        } else {
+          await queryClient.invalidateQueries({ queryKey: ["teacher"] });
+        }
       },
+    //   onSettled: async() => {
+    //     await queryClient.invalidateQueries(["teacher"]);
+    //   },
     });
   }
