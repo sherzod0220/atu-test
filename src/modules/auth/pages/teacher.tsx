@@ -19,6 +19,8 @@ const Teacher = () => {
   }
   return (
     <div className="card w-full h-[100vh] flex flex-col justify-center items-center">
+      <div className="card-inside w-full h-[100%] flex flex-col justify-center items-center">
+
       <div className="box w-[300px] sm:w-[600px] lg:w-[50%] py-[20px] flex flex-col gap-[20px] justify-center items-center">
         <h2>Yangi o‘qituvchi qo‘shish</h2>
         <Form
@@ -92,6 +94,7 @@ const Teacher = () => {
           </Form.Item>
         </Form>
           <p className="cursor-pointer" onClick={move} style={{color:'blue'}}>If you have an accout</p>
+      </div>
       </div>
     </div>
   );
