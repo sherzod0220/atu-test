@@ -43,7 +43,7 @@ const Login = () => {
   return (
     <div className="card w-full h-[100vh] flex flex-col justify-center items-center">
       <div className="box w-[50%] h-[60%] flex flex-col gap-[20px] justify-center items-center">
-        <h2 className="text-[35px] text-[darkblue] font-serif font-bold">Kirish</h2>
+        <h2 className="text-[35px] text-[darkblue] font-serif font-bold">Register Face</h2>
         <Form
           form={form}
           layout="vertical"
