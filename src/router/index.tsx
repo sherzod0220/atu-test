@@ -9,7 +9,8 @@ import {
     SignIn,
     SignUp,
     Dashboard,
-    Teachers
+    Teachers,
+    Setting
 } from "@modules"
 import App from "../App";
 
@@ -21,6 +22,7 @@ const Index =()=>{
                 <Route path="sign-up" element={<SignUp/>}/>
                 <Route path="main/*" element={<Dashboard/>}>
                     <Route path="" element={<Teachers/>}/>
+                    <Route path="setting" element={<Setting/>}/>
                 </Route>
             </Route>
         )

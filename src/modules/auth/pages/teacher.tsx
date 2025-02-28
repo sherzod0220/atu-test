@@ -18,11 +18,11 @@ const Teacher = () => {
     navigate("/"); // Sign-in sahifasiga o'tish
   }
   return (
-    <div className="card w-full h-[100vh] flex flex-col justify-center items-center">
+    <div className="card w-full h-[100vh] flex flex-col justify-center items-center ">
       <div className="card-inside w-full h-[100%] flex flex-col justify-center items-center">
 
       <div className="box w-[300px] sm:w-[600px] lg:w-[50%] py-[20px] flex flex-col gap-[20px] justify-center items-center">
-        <h2>Yangi o‘qituvchi qo‘shish</h2>
+        <h2 className="text-[25px] text-[darkblue] font-bold font-serif">Create an account</h2>
         <Form
           form={form}
           layout="vertical"
@@ -31,7 +31,7 @@ const Teacher = () => {
         >
           <Form.Item
             name="firstName"
-            label="Ism"
+            label="Firs Name"
             rules={[{ required: true, message: "Iltimos, ismni kiriting!" }]}
           >
             <Input placeholder="Ismni kiriting" />
@@ -39,7 +39,7 @@ const Teacher = () => {
 
           <Form.Item
             name="lastName"
-            label="Familiya"
+            label="Last Name"
             rules={[{ required: true, message: "Iltimos, familiyani kiriting!" }]}
           >
             <Input placeholder="Familiyani kiriting" />
@@ -47,7 +47,7 @@ const Teacher = () => {
 
           <Form.Item
             name="phone"
-            label="Telefon raqam"
+            label="Phone Number"
             rules={[
               { required: true, message: "Iltimos, telefon raqamni kiriting!" },
             ]}
@@ -65,7 +65,7 @@ const Teacher = () => {
 
           <Form.Item
             name="degree"
-            label="Daraja"
+            label="Degree"
             rules={[{ required: true, message: "Iltimos, darajani kiriting!" }]}
           >
             <Input placeholder="Masalan, Bakalavr" />
@@ -73,7 +73,7 @@ const Teacher = () => {
 
           <Form.Item
             name="position"
-            label="Lavozim"
+            label="Position"
             rules={[{ required: true, message: "Iltimos, lavozimni kiriting!" }]}
           >
             <Input placeholder="Masalan, O‘qituvchi" />
@@ -87,7 +87,7 @@ const Teacher = () => {
               // loading={isLoading}
               style={{ backgroundColor: "#3b82f6", borderColor: "#3b82f6" }}
             >
-              { "Qo‘shish"}
+              create
             </Button>
             {/* {isSuccess && <p style={{ color: "green" }}>O‘qituvchi muvaffaqiyatli qo‘shildi!</p>}
             {isError && <p style={{ color: "red" }}>Xatolik yuz berdi! Qayta urinib ko‘ring.</p>} */}
