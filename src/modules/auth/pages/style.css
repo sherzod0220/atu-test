@@ -1,0 +1,22 @@
+ .card{
+    background-image: url(../../../assets/students.jpg);
+    background-size: cover;
+    
+}
+.box{
+    background-color: rgba(206, 206, 206, 0.511);
+    backdrop-filter: blur(10px);
+}
+
+
+.custom-btn {
+    background-color: #1890ff;
+    color: #fff;
+    border: none;
+    /* padding: 10px 20px; */
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-btn:hover {
+    background-color: #40a9ff;
+  }
