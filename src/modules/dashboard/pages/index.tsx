@@ -1,13 +1,10 @@
-import React, { useState,useEffect } from 'react';
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-} from '@ant-design/icons';
-import { Button, Layout, Menu, theme } from 'antd';
-import { NavLink, Outlet,useLocation } from "react-router-dom";
-import logo from '../../../assets/university.png'
-import { routes } from '../../../router/routes';
-// import { Logout }  from "@components";
+import React, { useState, useEffect } from "react";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import { Button, Layout, Menu, theme } from "antd";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
+import logo from "../../../assets/university.png";
+import { routes } from "../../../router/routes";
+import Logout from "./logout";
 
 const { Header, Sider, Content } = Layout;
 
@@ -19,7 +16,7 @@ const App: React.FC = () => {
   useEffect(() => {
     // Find the active route and set the selected key based on the current path
     const currentRouteIndex = routes.findIndex(
-      route => route.path === location.pathname
+      (route) => route.path === location.pathname
     );
     // console.log(currentRouteIndex);
     if (currentRouteIndex !== -1) {
@@ -32,17 +29,17 @@ const App: React.FC = () => {
 
   return (
     <Layout>
-      <Sider 
-        trigger={null} 
-        collapsible 
+      <Sider
+        trigger={null}
+        collapsible
         collapsed={collapsed}
         style={{
-            minHeight: "100vh",
-            // width: "400px",
-            overflow: "auto",
-          }}
-        width={250}  
-        >
+          minHeight: "100vh",
+          // width: "400px",
+          overflow: "auto",
+        }}
+        width={250}
+      >
         <div
           style={{
             display: "flex",
@@ -56,12 +53,14 @@ const App: React.FC = () => {
             src={logo}
             alt="Main Logo"
             style={{ width: collapsed ? "40px" : "48px" }}
-            className='rounded-[10px]'
+            className="rounded-[10px]"
           />
           {!collapsed && (
-            <h1 className='text-[22px] ml-[15px] text-[white] font-extrabold italic'>ATU</h1>
+            <h1 className="text-[22px] ml-[15px] text-[white] font-extrabold italic">
+              ATU
+            </h1>
           )}
-        </div>        
+        </div>
         <Menu
           theme="dark"
           mode="inline"
@@ -69,36 +68,46 @@ const App: React.FC = () => {
           items={routes.map((item, index) => ({
             key: index.toString(), // Use string keys for consistency
             icon: item.icon,
-            label: <NavLink to={item.path} style={{fontSize:"20px"}}>{item.title}</NavLink>,
+            label: (
+              <NavLink to={item.path} style={{ fontSize: "20px" }}>
+                {item.title}
+              </NavLink>
+            ),
           }))}
         />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer}}>
-            <div className='flex justify-between items-center'>
-                <Button
-                  type="text"
-                  icon={collapsed ? <MenuUnfoldOutlined style={{fontSize:"22px"}}/> :   <MenuFoldOutlined style={{fontSize:"22px"}}/>}
-                  onClick={() => setCollapsed(!collapsed)}
-                  style={{
-                    fontSize: '16px',
-                    width: 64,
-                    height: 64,
-                  }}
-                />
-                {/* <Logout/> */}
-            </div>
+        <Header style={{ padding: 0, background: colorBgContainer }}>
+          <div className="flex justify-between pr-[30px] items-center">
+            <Button
+              type="text"
+              icon={
+                collapsed ? (
+                  <MenuUnfoldOutlined style={{ fontSize: "22px" }} />
+                ) : (
+                  <MenuFoldOutlined style={{ fontSize: "22px" }} />
+                )
+              }
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: "16px",
+                width: 64,
+                height: 64,
+              }}
+            />
+            <Logout/>
+          </div>
         </Header>
         <Content
           style={{
-            margin: '24px 16px',
+            margin: "24px 16px",
             padding: 24,
             minHeight: 280,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
           }}
         >
-          <Outlet/>
+          <Outlet />
         </Content>
       </Layout>
     </Layout>

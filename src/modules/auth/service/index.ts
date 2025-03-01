@@ -36,3 +36,17 @@ export const registerFace = async (teacherId: string, faceImage: File) => {
     throw error;
   }
 };
+
+
+// ===== Get Teacher by ID =====
+export const getTeacherById = async (teacherId: string) => {
+    try {
+      const response = await axiosInstance.get(
+        `teachers/one/${teacherId}`
+      );
+      return response.data;
+    } catch (error: any) {
+      console.error("Teacher olishda xatolik:", error.response?.data || error.message);
+      throw error;
+    }
+  };
