@@ -1,10 +1,14 @@
 // src/pages/index.tsx
 import { useEffect, useState } from "react";
 import { Button, Result, Popconfirm } from "antd";
+import { LogoutOutlined,DeleteOutlined,EditOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useTeacherById } from "../hooks/queries";
-import { useDeleteTeacherMutation, useUpdateTeacherMutation } from "../hooks/mutation";
+import {
+  useDeleteTeacherMutation,
+  useUpdateTeacherMutation,
+} from "../hooks/mutation";
 import EditModal from "./modal"; // Modal komponentini import qilamiz
 import { Teacher } from "../types";
 
@@ -78,7 +82,11 @@ const Settings = () => {
   }
 
   if (isLoading) {
-    return <div className="flex justify-center items-center h-[100vh]">Yuklanmoqda...</div>;
+    return (
+      <div className="flex justify-center items-center h-[100vh]">
+        Yuklanmoqda...
+      </div>
+    );
   }
 
   if (isError) {
@@ -90,7 +98,11 @@ const Settings = () => {
   }
 
   if (!teacher) {
-    return <div className="flex justify-center items-center h-[100vh]">Ma’lumot topilmadi</div>;
+    return (
+      <div className="flex justify-center items-center h-[100vh]">
+        Ma’lumot topilmadi
+      </div>
+    );
   }
 
   return (
@@ -98,13 +110,27 @@ const Settings = () => {
       <div className="box w-[100%] h-[100%] flex flex-col gap-[20px] p-[30px] items-center">
         <h2 className="text-[25px] font-bold">Hisob sozlamalari</h2>
         <div className="w-full text-left">
-          <p><strong>ID:</strong> {teacher.id}</p>
-          <p><strong>Ism:</strong> {teacher.firstName}</p>
-          <p><strong>Familiya:</strong> {teacher.lastName}</p>
-          <p><strong>Telefon:</strong> {teacher.phone}</p>
-          <p><strong>PINFL:</strong> {teacher.pinfl}</p>
-          <p><strong>Daraja:</strong> {teacher.degree}</p>
-          <p><strong>Lavozim:</strong> {teacher.position}</p>
+          <p>
+            <strong>ID:</strong> {teacher.id}
+          </p>
+          <p>
+            <strong>Ism:</strong> {teacher.firstName}
+          </p>
+          <p>
+            <strong>Familiya:</strong> {teacher.lastName}
+          </p>
+          <p>
+            <strong>Telefon:</strong> {teacher.phone}
+          </p>
+          <p>
+            <strong>PINFL:</strong> {teacher.pinfl}
+          </p>
+          <p>
+            <strong>Daraja:</strong> {teacher.degree}
+          </p>
+          <p>
+            <strong>Lavozim:</strong> {teacher.position}
+          </p>
         </div>
         <div className="flex gap-4">
           <Button
@@ -112,30 +138,38 @@ const Settings = () => {
             onClick={showModal}
             style={{ backgroundColor: "#3b82f6", borderColor: "#3b82f6" }}
           >
-            Hisobni tahrirlash
+            <EditOutlined />Edit account
           </Button>
           <Popconfirm
             title="Hisobni o‘chirishni tasdiqlaysizmi?"
             onConfirm={handleDelete}
-            okText="Ha"
-            cancelText="Yo‘q"
-            okButtonProps={{ style: { backgroundColor: "#ef4444", borderColor: "#ef4444" } }}
+            okText="Delete"
+            cancelText="Concel"
+            okButtonProps={{
+              style: { backgroundColor: "#ef4444", borderColor: "#ef4444" },
+            }}
           >
             <Button
               type="primary"
               style={{ backgroundColor: "#ef4444", borderColor: "#ef4444" }}
               // loading={deleteMutation.isLoading}
             >
-              Hisobni o‘chirish
+              <DeleteOutlined />Delete account
             </Button>
           </Popconfirm>
-          <Button
-            type="primary"
-            onClick={handleLogout}
-            style={{ backgroundColor: "#6b7280", borderColor: "#6b7280" }}
+          <Popconfirm
+            title="Hisobdan chiqishni tasdiqlaysizmi?"
+            onConfirm={handleLogout}
+            okText="confirm"
+            cancelText="concel"
+            okButtonProps={{
+              style: { backgroundColor: "#ef4444", borderColor: "#ef4444" },
+            }}
           >
-            Chiqish
-          </Button>
+            <Button danger type="primary" className="">
+            <LogoutOutlined />Chiqish
+            </Button>
+          </Popconfirm>
         </div>
 
         <EditModal

@@ -1,7 +1,7 @@
 // src/hooks/mutations.ts
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteTeacher, updateTeacher } from "../service";
-import { Notification } from "@notification";
+import Notification from "@notification";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { Teacher,UpdateTeacher } from "../types"; // Teacher tipini import qilamiz
@@ -16,7 +16,7 @@ export function useDeleteTeacherMutation() {
     onSuccess: () => {
       Notification({
         type: "success",
-        message: "Hisob muvaffaqiyatli o‘chirildi!",
+        title: "Hisob muvaffaqiyatli o‘chirildi!",
       });
       queryClient.invalidateQueries({ queryKey: ["teacher"] }); // Arrayni to'g'ri invalidatsiya qilish
       Cookies.remove("teacherId"); // Cookie’dan teacherId ni o‘chirish
@@ -26,7 +26,7 @@ export function useDeleteTeacherMutation() {
       console.error("Hisob o‘chirishda xatolik:", error);
       Notification({
         type: "error",
-        message:
+        title:
           error instanceof Error
             ? error.message
             : "Hisob o‘chirishda xatolik yuz berdi! Qayta urinib ko‘ring.",
@@ -45,7 +45,7 @@ export function useUpdateTeacherMutation() {
     onSuccess: (updatedTeacher: Teacher) => {
       Notification({
         type: "success",
-        message: "Hisob muvaffaqiyatli yangilandi!",
+        title: "Hisob muvaffaqiyatli yangilandi!",
       });
       queryClient.invalidateQueries({ queryKey: ["teacher", String(updatedTeacher.id)] });
 
@@ -56,7 +56,7 @@ export function useUpdateTeacherMutation() {
       console.error("Hisob yangilashda xatolik:", error.message);
       Notification({
         type: "error",
-        message: "Hisob yangilashda xatolik yuz berdi! Qayta urinib ko‘ring.",
+        title: "Hisob yangilashda xatolik yuz berdi! Qayta urinib ko‘ring.",
       });
     },
   });

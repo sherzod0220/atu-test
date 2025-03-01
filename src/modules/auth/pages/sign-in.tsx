@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { UploadOutlined } from "@ant-design/icons";
 import './style.css';
 import { useRegisterFaceMutation } from "../hooks/mutation";
-import { Notification } from "@notification";
+import Notification from "@notification";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Login = () => {
     if (!values.faceImage || !values.faceImage.file) {
       Notification({
         type: "error",
-        message: "Rasm yuklanmagan yoki noto‘g‘ri formatda!",
+        title: "Rasm yuklanmagan yoki noto‘g‘ri formatda!",
       });
       return;
     }
@@ -75,7 +75,7 @@ const Login = () => {
                 if (!isJpegOrPng) {
                   Notification({
                     type: "error",
-                    message: "Faqat JPEG yoki PNG formatidagi rasmlarni yuklang!",
+                    title: "Faqat JPEG yoki PNG formatidagi rasmlarni yuklang!",
                   });
                   return Upload.LIST_IGNORE;
                 }
@@ -84,7 +84,7 @@ const Login = () => {
                 if (!isLt5M) {
                   Notification({
                     type: "error",
-                    message: "Rasm hajmi 5MB dan kichik bo‘lishi kerak!",
+                    title: "Rasm hajmi 5MB dan kichik bo‘lishi kerak!",
                   });
                   return Upload.LIST_IGNORE;
                 }

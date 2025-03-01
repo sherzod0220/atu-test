@@ -2,6 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { Button, Popconfirm } from "antd";
+import { LogoutOutlined } from "@ant-design/icons";
 
 const Logout = () => {
   const navigate = useNavigate();
@@ -15,16 +16,16 @@ const Logout = () => {
   return (
     <div className="">
       <Popconfirm
-        title="Hisobni o‘chirishni tasdiqlaysizmi?"
+        title="Hisobdan chiqishni tasdiqlaysizmi?"
         onConfirm={handleLogout}
-        okText="Ha"
-        cancelText="Yo‘q"
+        okText="confirm"
+        cancelText="concel"
         okButtonProps={{
           style: { backgroundColor: "#ef4444", borderColor: "#ef4444" },
         }}
       >
         <Button danger type="primary" className="">
-          Chiqish
+          <LogoutOutlined/>Chiqish
         </Button>
       </Popconfirm>
     </div>

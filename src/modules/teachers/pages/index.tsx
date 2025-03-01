@@ -1,5 +1,5 @@
 
-const Index = () => {
+const Teachers = () => {
   return (
     <div>
       <h1>teachers</h1>
@@ -7,4 +7,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Teachers

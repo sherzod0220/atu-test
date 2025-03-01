@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createTeacher } from "../service";
 import { CreateTeacher } from "../types";
-import { Notification } from "@notification";
+import Notification from "@notification";
 import { useNavigate } from "react-router-dom";
 
 import { registerFace } from "../service";
@@ -25,7 +25,7 @@ export function useCreateTeacherMutation() {
         Cookies.set("teacherId", response.id, { expires: 7 }); // 7 kun davomida saqlash
         Notification({
             type: "success",
-            message: "Account created successfully"
+            title: `Account created successfully, Your ID:${response?.id}`
           })
           navigate("/");
       },
@@ -65,7 +65,7 @@ interface RegisterFaceResponse {
         Cookies.set("teacherId", variables.teacherId, { expires: 7 }); // `variables` dan `teacherId` ni olish
         Notification({
           type: "success",
-          message: "Login muvaffaqiyatli!",
+          title: "Login muvaffaqiyatli!",
         });
         navigate("/main"); // Login muvaffaqiyatli bo‘lganda layout’ga o‘tish
       },
@@ -76,7 +76,7 @@ interface RegisterFaceResponse {
         console.log("Xatolik detallari:", error?.response?.data);
         Notification({
           type: "error",
-          message: "Login xatolik yuz berdi! Qayta urinib ko‘ring.",
+          title: "Login xatolik yuz berdi! Qayta urinib ko‘ring.",
         });
       },
       onSettled: async (_, error) => {
