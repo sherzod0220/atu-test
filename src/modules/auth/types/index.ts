@@ -8,6 +8,10 @@ export interface CreateTeacher {
     position: string
 }
 
+export interface AddFace {
+    teacherId: string,
+    file: File
+}
 // export interface SignUp extends SignIn{
 //     address: string;
 //     email: string;

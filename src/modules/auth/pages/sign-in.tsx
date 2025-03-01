@@ -4,27 +4,30 @@ import { useNavigate } from "react-router-dom";
 import { UploadOutlined } from "@ant-design/icons";
 import './style.css';
 import { useRegisterFaceMutation } from "../hooks/mutation";
-import { Notification } from "@notification"; // Agar mavjud bo‘lsa
+import { Notification } from "@notification";
 
 const Login = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const { mutate, isError, isSuccess } = useRegisterFaceMutation();
 
-  const handleFinish = (values: { id: string; faceImage: File | null }) => {
-    if (!values.faceImage) {
+  const handleFinish = (values: { id: string; faceImage: { file: File } }) => {
+    if (!values.faceImage || !values.faceImage.file) {
       Notification({
         type: "error",
-        message: "Rasm yuklanmagan!",
+        message: "Rasm yuklanmagan yoki noto‘g‘ri formatda!",
       });
       return;
     }
-
+  
+    console.log("To‘g‘rilangan ma'lumotlar:", values.id, values.faceImage.file);
+  
     mutate({
       teacherId: values.id,
-      faceImage: values.faceImage,
+      faceImage: values.faceImage.file, // Faqat faylni yuboramiz
     });
   };
+  
 
   const move = () => {
     navigate("/sign-up");
@@ -43,7 +46,7 @@ const Login = () => {
   return (
     <div className="card w-full h-[100vh] flex flex-col justify-center items-center">
       <div className="box w-[50%] h-[60%] flex flex-col gap-[20px] justify-center items-center">
-        <h2 className="text-[35px] text-[darkblue] font-serif font-bold">Register Face</h2>
+        <h2 className="text-[35px] text-[darkblue] font-serif font-bold">Kirish</h2>
         <Form
           form={form}
           layout="vertical"
@@ -64,15 +67,15 @@ const Login = () => {
             rules={[{ required: true, message: "Iltimos, rasm yuklang!" }]}
           >
             <Upload
-              name="file" // `curl` dagi "file" nomiga moslashtirdik
+              name="file" // Server talab qilgan "file" nomiga mos
               listType="picture"
               maxCount={1}
               beforeUpload={(file) => {
-                const isImage = file.type.startsWith("image/");
-                if (!isImage) {
+                const isJpegOrPng = file.type === "image/jpeg" || file.type === "image/png";
+                if (!isJpegOrPng) {
                   Notification({
                     type: "error",
-                    message: "Faqat rasm fayllarini yuklang!",
+                    message: "Faqat JPEG yoki PNG formatidagi rasmlarni yuklang!",
                   });
                   return Upload.LIST_IGNORE;
                 }
@@ -112,7 +115,7 @@ const Login = () => {
               // loading={isLoading}
               style={{ backgroundColor: "#3b82f6", borderColor: "#3b82f6" }}
             >
-              Cheking
+              Kirish
             </Button>
             {isSuccess && <p style={{ color: "green" }}>Kirish muvaffaqiyatli!</p>}
             {isError && <p style={{ color: "red" }}>Xatolik yuz berdi! Qayta urinib ko‘ring.</p>}

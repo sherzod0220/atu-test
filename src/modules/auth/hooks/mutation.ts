@@ -83,11 +83,8 @@ interface RegisterFaceResponse {
         if (error) {
           console.log(error?.message, "errorrr");
         } else {
-          await queryClient.invalidateQueries({ queryKey: ["teacher"] });
+          await queryClient.invalidateQueries({ queryKey: ["teacherId"] });
         }
       },
-    //   onSettled: async() => {
-    //     await queryClient.invalidateQueries(["teacher"]);
-    //   },
     });
   }
