@@ -76,7 +76,7 @@ interface RegisterFaceResponse {
         console.log("Xatolik detallari:", error?.response?.data);
         Notification({
           type: "error",
-          title: "Login xatolik yuz berdi! Qayta urinib ko‘ring.",
+          title: `${error?.response?.data?.errorMessage}, Try again`,
         });
       },
       onSettled: async (_, error) => {
